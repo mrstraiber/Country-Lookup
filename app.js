@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import dotenv from "dotenv";
 import axios from "axios";
 import bodyParser from "body-parser";
@@ -8,13 +8,14 @@ const app = express();
 const port = process.env.port;
 const url = process.env.url;
 const apikey = process.env.apikey;
+const imagepi = process.env.imageApi;
 
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-    res.render("index.ejs");
+    res.render("index.ejs", {response});
 })
 
 app.post("/search", async (req, res) =>{
@@ -26,17 +27,33 @@ app.post("/search", async (req, res) =>{
     }
     else{
         try {
-            const response = await axios.get(`${url}${searchCountry}`);
-            const result = response.data[0];
+            //
+            const responseImage = (await axios.get(`${imagepi}${searchCountry}&orientation=landscape&size=large`, {
+                headers: {
+                    Authorization: `${apikey}`
+                }
+            })).data;
+            const responseCountry = await axios.get(`${url}${searchCountry}`);
+            const result = responseCountry.data[0];
             const currency = Object.keys(result.currencies)[0];
-            const translate = Object.keys(result.translations);
+            const languages = Object.values(result.languages).join(", ");
             const responsedata = {
                 common: result.name.common,
                 official: result.name.official,
                 domain: result.tld[0],
-                
-            }
-            console.log(response.data);
+                currenciesCode: currency,
+                currenciesName: result.currencies[currency].name,
+                capital: result.capital[0],
+                region: result.region,
+                languages: languages,
+                area: result.area + " Km²",
+                maps: result.maps.googleMaps,
+                population: result.population,
+                timezones: result.timezones,
+                flags: result.flags.svg,
+            };
+            res.render("index.ejs", {response: responsedata});
+            console.log(responseImage);
           } catch (error) {
             console.error(error);
           }
