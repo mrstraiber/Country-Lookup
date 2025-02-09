@@ -68,7 +68,13 @@ function filterItems() {
             li.onclick = () => {
                 searchInput.value = country;
                 dropdown.classList.remove('show');
-                document.getElementById('selectedCountry').value = country;
+                if(li.textContent === "United States"){
+                    document.getElementById('selectedCountry').value = "United States of America";
+                }
+                else{
+                    document.getElementById('selectedCountry').value = country;
+                }
+                
             };
             dropdown.appendChild(li);
         });

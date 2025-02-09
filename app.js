@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 app.post("/search", async (req, res) =>{
     const searchCountry = req.body.countryselected;
 
-    if(req.body.countryselected === '')
+    if(searchCountry === '')
     {
         res.render("index.ejs", {response: "Please chose a country from list"});
     }
@@ -36,6 +36,9 @@ app.post("/search", async (req, res) =>{
             const responseCountry = await axios.get(`${url}${searchCountry}`);
             const result = responseCountry.data[0];
             const currency = Object.keys(result.currencies)[0];
+            const lat = result.latlng[0];
+            const lng = result.latlng[1];
+            const mapsurl = `https://www.openstreetmap.org/export/embed.html?bbox=${lng - 5},${lat - 5},${lng + 5},${lat + 5}&layer=mapnik`;
             const languages = Object.values(result.languages).join(", ");
             const responsedata = {
                 common: result.name.common,
@@ -47,21 +50,22 @@ app.post("/search", async (req, res) =>{
                 region: result.region,
                 languages: languages,
                 area: result.area + " Km²",
-                maps: result.maps.googleMaps,
+                maps: mapsurl,
                 population: result.population,
-                timezones: result.timezones,
+                timezones: result.timezones[0],
                 flags: result.flags.svg,
+                countryimage: responseImage.photos[0].src.original,
+                countryimageinfo: responseImage.photos[0].alt,
+                photographername: responseImage.photos[0].photographer,
+                photographerurl: responseImage.photos[0].url,
             };
             res.render("index.ejs", {response: responsedata});
-            console.log(responseImage);
+            console.log(mapsurl);
           } catch (error) {
             console.error(error);
           }
     }
-})
-
-
-
+});
 
 
 app.listen(port, () => {

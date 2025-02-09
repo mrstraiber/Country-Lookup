@@ -13,10 +13,19 @@
                 <h3>Country LookUp</h3>
             </div>
         </div>
-        <div class="capital-image">
+        <div class="bg-image">
             <!--capital image source-->
-            <img class="country-image" src="/images/pexels-caio-179757.jpg" alt="Test Image">
-            <a href="#" class="photograph-credit" target="_blank">By Mark vie Pexels</a>
+            <img class="country-image" src="<%= response.countryimage %>" alt="">
+            <div class="photograph-credit">By 
+                <a class="credit-style" href="<%= response.photographerurl %>" target="_blank"><%= response.photographername %></a>
+                vie
+                <a class="credit-style" href="https://www.pexels.com/" target="_blank">Pexels</a>
+            </div>
+        </div>
+        <div class="bg-image-info">
+            <div>
+                <p><%= response.countryimageinfo %></p>
+            </div>
         </div>
         <div class="search-bar"> 
             <div class="container">
@@ -46,36 +55,51 @@
             <div class="result-section">
                 <div class="center-div-country-name">
                     <div class="country-flag">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 504 198"><path fill="#8a1538" d="M0 0h504v198H0z"/><path fill="#fff" d="M144 198H0V0h144l36 11-36 11 36 11-36 11 36 11-36 11 36 11-36 11 36 11-36 11 36 11-36 11 36 11-36 11 36 11-36 11 36 11z"/></svg>
+                        <img src="<%= response.flags %>" alt="Flag of <%= response.common %>">
                     </div>
                     <div class="country-name">
-                        <p>Qatar</p>
-                        <p>State of Qatar</p>
+                        <p><%= response.common %></p>
+                        <p><%= response.official %></p>
                     </div>
                 </div>
-                <div class="country-detail">
-                    <div class="cards-detail">
-                        <p>currencies</p>
-                        <p>Qatari riyal</p>
+                <div class="country-detail-section">
+                    <div class="country-detail-left">
+                        <div class="cards-detail">
+                            <p>Capital</p>
+                            <p><%= response.capital %></p>
+                        </div>
+                        <div class="cards-detail">
+                            <p>Region</p>
+                            <p><%= response.region %></p>
+                        </div>
+                        <div class="cards-detail">
+                            <p>Population</p>
+                            <p><%= response.population %></p>
+                        </div>
+                        <div class="cards-detail">
+                            <p>Currencies</p>
+                            <p><%= response.currenciesCode %> | <%= response.currenciesName %></p>
+                        </div>
+                        <div class="cards-detail">
+                            <p>Languages</p>
+                            <p><%= response.languages %></p>
+                        </div>
+                        <div class="cards-detail">
+                            <p>Domain TLD</p>
+                            <p><%= response.domain %></p>
+                        </div>
+                        <div class="cards-detail">
+                            <p>Area Length</p>
+                            <p><%= response.area %></p>
+                        </div>
+                        <div class="cards-detail">
+                            <p>Time Zone</p>
+                            <p><%= response.timezones %></p>
+                        </div>
                     </div>
-                    <div class="cards-detail">
-                        <p>currencies</p>
-                        <p>Qatari riyal</p>
+                    <div class="country-detail-right">
+                        <iframe class="maps" src="<%= response.maps %>"></iframe>
                     </div>
-                    <div class="cards-detail">
-                        <p>currencies</p>
-                        <p>Qatari riyal</p>
-                    </div>
-                    <div class="cards-detail">
-                        <p>currencies</p>
-                        <p>Qatari riyal</p>
-                    </div>
-                    <div class="cards-detail">
-                        <p>currencies</p>
-                        <p>Qatari riyal</p>
-                    </div>
-                    
-                    
                 </div>
             </div>
         </div>
