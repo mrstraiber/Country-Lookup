@@ -11,6 +11,7 @@ A simple web application where users can search for a country and get various de
 ___
 
 **Tech Stack**
+
 This project uses the following technologies:
 
 - Frontend: EJS, CSS, JavaScript
