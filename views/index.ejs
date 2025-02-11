@@ -13,95 +13,136 @@
                 <h3>Country LookUp</h3>
             </div>
         </div>
-        <div class="bg-image">
-            <!--capital image source-->
-            <img class="country-image" src="<%= response.countryimage %>" alt="">
-            <div class="photograph-credit">By 
-                <a class="credit-style" href="<%= response.photographerurl %>" target="_blank"><%= response.photographername %></a>
-                vie
-                <a class="credit-style" href="https://www.pexels.com/" target="_blank">Pexels</a>
+        
+        <% if (locals.response) { %>
+            <div class="bg-image">
+                <img class="country-image" src="<%= response.countryimage %>" alt="">
             </div>
-        </div>
-        <div class="bg-image-info">
-            <div>
-                <p><%= response.countryimageinfo %></p>
-            </div>
-        </div>
-        <div class="search-bar"> 
             <div class="container">
-                <form action="/search" method="post">
-                    <div class="search-section">
-                        <div class="search-input">
-                            <input type="text" id="searchInput" name="search_query" placeholder="Select your Country" onkeyup="filterItems()">
-                            <input type="hidden" id="selectedCountry" name="countryselected">
-                            <ul id="dropdown" name="dropdown" class="dropdown-list">
-                            </ul>
+                <div class="bg-image-info">
+                    <p><%= response.countryimageinfo %></p>
+                    <div class="photograph-credit">
+                        Image By 
+                        <a href="<%= response.photographerurl %>" target="_blank"><%= response.photographername %></a>
+                        vie
+                        <a href="https://www.pexels.com/" target="_blank">Pexels</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container"> 
+                <div class="search-bar">
+                    <form action="/search" method="post">
+                        <div class="search-section">
+                            <div class="search-input">
+                                <input type="text" id="searchInput" name="search_query" placeholder="Select your Country" onkeyup="filterItems()">
+                                <input type="hidden" id="selectedCountry" name="countryselected">
+                                <ul id="dropdown" name="dropdown" class="dropdown-list">
+                                </ul>
+                            </div>
+                            <div class="button-section">
+                                <button type="submit" title="Search">
+                                    <div class="search-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 128 128">
+                                                    <path d="M 56.599609 21.599609 C 34.099609 21.599609 15.800781 40.100781 15.800781 62.800781 C 15.800781 85.600781 34.099609 104 56.599609 104 C 66.899609 104 76.3 100.09922 83.5 93.699219 L 85.800781 96 L 83.699219 98.199219 C 82.499219 99.399219 82.499219 101.3 83.699219 102.5 L 101.69922 120.69922 C 102.29922 121.29922 103.00078 121.59961 103.80078 121.59961 C 104.60078 121.59961 105.40039 121.29922 105.90039 120.69922 L 113.90039 112.59961 C 115.00039 111.39961 115.00078 109.50039 113.80078 108.40039 L 95.800781 90.199219 C 95.200781 89.599219 94.499219 89.300781 93.699219 89.300781 C 92.899219 89.300781 92.099609 89.599219 91.599609 90.199219 L 89.5 92.400391 L 87.199219 90 C 93.499219 82.7 97.400391 73.200781 97.400391 62.800781 C 97.400391 40.100781 79.099609 21.599609 56.599609 21.599609 z M 56.599609 27.699219 C 75.799609 27.699219 91.400391 43.500391 91.400391 62.900391 C 91.400391 82.300391 75.799609 98 56.599609 98 C 37.399609 98 21.800781 82.300391 21.800781 62.900391 C 21.800781 43.500391 37.399609 27.699219 56.599609 27.699219 z M 56.699219 40.199219 C 47.199219 40.199219 38.7 46.300781 35.5 55.300781 C 35 56.600781 35.699609 58.199609 37.099609 58.599609 C 37.399609 58.699609 37.7 58.800781 38 58.800781 C 39.1 58.800781 40.1 58.1 40.5 57 C 42.9 50.1 49.499219 45.400391 56.699219 45.400391 C 58.099219 45.400391 59.300781 44.200781 59.300781 42.800781 C 59.300781 41.400781 58.099219 40.199219 56.699219 40.199219 z M 37.699219 64.900391 C 36.299219 64.900391 35.099609 66 35.099609 67.5 L 35.099609 67.900391 C 35.199609 69.300391 36.300781 70.5 37.800781 70.5 C 39.200781 70.5 40.400391 69.300391 40.400391 67.900391 L 40.400391 67.599609 C 40.400391 66.099609 39.300781 64.900391 37.800781 64.900391 L 37.699219 64.900391 z M 93.800781 96.599609 L 107.59961 110.59961 L 103.80078 114.40039 L 90 100.40039 L 93.800781 96.599609 z"></path>
+                                        </svg>
+                                        <span>Search</span>
+                                    </div>
+                                </button>
+                            </div>
                         </div>
-                        <div class="button-section">
-                            <button type="submit" title="Search">
-                                <div class="search-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 128 128">
-                                                <path d="M 56.599609 21.599609 C 34.099609 21.599609 15.800781 40.100781 15.800781 62.800781 C 15.800781 85.600781 34.099609 104 56.599609 104 C 66.899609 104 76.3 100.09922 83.5 93.699219 L 85.800781 96 L 83.699219 98.199219 C 82.499219 99.399219 82.499219 101.3 83.699219 102.5 L 101.69922 120.69922 C 102.29922 121.29922 103.00078 121.59961 103.80078 121.59961 C 104.60078 121.59961 105.40039 121.29922 105.90039 120.69922 L 113.90039 112.59961 C 115.00039 111.39961 115.00078 109.50039 113.80078 108.40039 L 95.800781 90.199219 C 95.200781 89.599219 94.499219 89.300781 93.699219 89.300781 C 92.899219 89.300781 92.099609 89.599219 91.599609 90.199219 L 89.5 92.400391 L 87.199219 90 C 93.499219 82.7 97.400391 73.200781 97.400391 62.800781 C 97.400391 40.100781 79.099609 21.599609 56.599609 21.599609 z M 56.599609 27.699219 C 75.799609 27.699219 91.400391 43.500391 91.400391 62.900391 C 91.400391 82.300391 75.799609 98 56.599609 98 C 37.399609 98 21.800781 82.300391 21.800781 62.900391 C 21.800781 43.500391 37.399609 27.699219 56.599609 27.699219 z M 56.699219 40.199219 C 47.199219 40.199219 38.7 46.300781 35.5 55.300781 C 35 56.600781 35.699609 58.199609 37.099609 58.599609 C 37.399609 58.699609 37.7 58.800781 38 58.800781 C 39.1 58.800781 40.1 58.1 40.5 57 C 42.9 50.1 49.499219 45.400391 56.699219 45.400391 C 58.099219 45.400391 59.300781 44.200781 59.300781 42.800781 C 59.300781 41.400781 58.099219 40.199219 56.699219 40.199219 z M 37.699219 64.900391 C 36.299219 64.900391 35.099609 66 35.099609 67.5 L 35.099609 67.900391 C 35.199609 69.300391 36.300781 70.5 37.800781 70.5 C 39.200781 70.5 40.400391 69.300391 40.400391 67.900391 L 40.400391 67.599609 C 40.400391 66.099609 39.300781 64.900391 37.800781 64.900391 L 37.699219 64.900391 z M 93.800781 96.599609 L 107.59961 110.59961 L 103.80078 114.40039 L 90 100.40039 L 93.800781 96.599609 z"></path>
-                                    </svg>
-                                    <span>Search</span>
+                    </form>
+                </div>
+            </div>
+            <div class="container">
+                <div class="result-section">
+                    <div class="center-div-country-name">
+                        <div class="country-flag">
+                            <img src="<%= response.flags %>" alt="Flag of <%= response.common %>">
+                        </div>
+                        <div class="country-name">
+                            <p><%= response.common %></p>
+                            <p><%= response.official %></p>
+                        </div>
+                    </div>
+                    <div class="country-detail-section">
+                        <div class="cards-output">
+                            <div class="cards-detail">
+                                <p>Capital</p>
+                                <p><%= response.capital %></p>
+                            </div>
+                            <div class="cards-detail">
+                                <p>Region</p>
+                                <p><%= response.region %></p>
+                            </div>
+                            <div class="cards-detail">
+                                <p>Population</p>
+                                <p><%= response.population %></p>
+                            </div>
+                            <div class="cards-detail">
+                                <p>Currencies</p>
+                                <p><%= response.currenciesCode %> | <%= response.currenciesName %></p>
+                            </div>
+                            <div class="cards-detail">
+                                <p>Languages</p>
+                                <p><%= response.languages %></p>
+                            </div>
+                            <div class="cards-detail">
+                                <p>Domain TLD</p>
+                                <p><%= response.domain %></p>
+                            </div>
+                            <div class="cards-detail">
+                                <p>Area Length</p>
+                                <p><%= response.area %></p>
+                            </div>
+                            <div class="cards-detail">
+                                <p>Time Zone</p>
+                                <p><%= response.timezones %></p>
+                            </div>
+                        </div>
+                        <div class="cards-output">
+                            <iframe class="maps" src="<%= response.maps %>"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+            <% } else { %>
+                <div class="container">
+                    <div class="bg-image-info">
+                        <p>Welcome to the Country LookUp Project</p>
+                    </div>
+                </div>
+                <div class="container"> 
+                    <div class="search-bar">
+                        <form action="/search" method="post">
+                            <div class="search-section">
+                                <div class="search-input">
+                                    <input type="text" id="searchInput" name="search_query" placeholder="Select your Country" onkeyup="filterItems()">
+                                    <input type="hidden" id="selectedCountry" name="countryselected">
+                                    <ul id="dropdown" name="dropdown" class="dropdown-list">
+                                    </ul>
                                 </div>
-                            </button>
-                        </div>
+                                <div class="button-section">
+                                    <button type="submit" title="Search">
+                                        <div class="search-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 128 128">
+                                                        <path d="M 56.599609 21.599609 C 34.099609 21.599609 15.800781 40.100781 15.800781 62.800781 C 15.800781 85.600781 34.099609 104 56.599609 104 C 66.899609 104 76.3 100.09922 83.5 93.699219 L 85.800781 96 L 83.699219 98.199219 C 82.499219 99.399219 82.499219 101.3 83.699219 102.5 L 101.69922 120.69922 C 102.29922 121.29922 103.00078 121.59961 103.80078 121.59961 C 104.60078 121.59961 105.40039 121.29922 105.90039 120.69922 L 113.90039 112.59961 C 115.00039 111.39961 115.00078 109.50039 113.80078 108.40039 L 95.800781 90.199219 C 95.200781 89.599219 94.499219 89.300781 93.699219 89.300781 C 92.899219 89.300781 92.099609 89.599219 91.599609 90.199219 L 89.5 92.400391 L 87.199219 90 C 93.499219 82.7 97.400391 73.200781 97.400391 62.800781 C 97.400391 40.100781 79.099609 21.599609 56.599609 21.599609 z M 56.599609 27.699219 C 75.799609 27.699219 91.400391 43.500391 91.400391 62.900391 C 91.400391 82.300391 75.799609 98 56.599609 98 C 37.399609 98 21.800781 82.300391 21.800781 62.900391 C 21.800781 43.500391 37.399609 27.699219 56.599609 27.699219 z M 56.699219 40.199219 C 47.199219 40.199219 38.7 46.300781 35.5 55.300781 C 35 56.600781 35.699609 58.199609 37.099609 58.599609 C 37.399609 58.699609 37.7 58.800781 38 58.800781 C 39.1 58.800781 40.1 58.1 40.5 57 C 42.9 50.1 49.499219 45.400391 56.699219 45.400391 C 58.099219 45.400391 59.300781 44.200781 59.300781 42.800781 C 59.300781 41.400781 58.099219 40.199219 56.699219 40.199219 z M 37.699219 64.900391 C 36.299219 64.900391 35.099609 66 35.099609 67.5 L 35.099609 67.900391 C 35.199609 69.300391 36.300781 70.5 37.800781 70.5 C 39.200781 70.5 40.400391 69.300391 40.400391 67.900391 L 40.400391 67.599609 C 40.400391 66.099609 39.300781 64.900391 37.800781 64.900391 L 37.699219 64.900391 z M 93.800781 96.599609 L 107.59961 110.59961 L 103.80078 114.40039 L 90 100.40039 L 93.800781 96.599609 z"></path>
+                                            </svg>
+                                            <span>Search</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-        </div>
+                </div>
+                <% } %>    
+
         <div class="container">
-            <div class="result-section">
-                <div class="center-div-country-name">
-                    <div class="country-flag">
-                        <img src="<%= response.flags %>" alt="Flag of <%= response.common %>">
-                    </div>
-                    <div class="country-name">
-                        <p><%= response.common %></p>
-                        <p><%= response.official %></p>
-                    </div>
-                </div>
-                <div class="country-detail-section">
-                    <div class="country-detail-left">
-                        <div class="cards-detail">
-                            <p>Capital</p>
-                            <p><%= response.capital %></p>
-                        </div>
-                        <div class="cards-detail">
-                            <p>Region</p>
-                            <p><%= response.region %></p>
-                        </div>
-                        <div class="cards-detail">
-                            <p>Population</p>
-                            <p><%= response.population %></p>
-                        </div>
-                        <div class="cards-detail">
-                            <p>Currencies</p>
-                            <p><%= response.currenciesCode %> | <%= response.currenciesName %></p>
-                        </div>
-                        <div class="cards-detail">
-                            <p>Languages</p>
-                            <p><%= response.languages %></p>
-                        </div>
-                        <div class="cards-detail">
-                            <p>Domain TLD</p>
-                            <p><%= response.domain %></p>
-                        </div>
-                        <div class="cards-detail">
-                            <p>Area Length</p>
-                            <p><%= response.area %></p>
-                        </div>
-                        <div class="cards-detail">
-                            <p>Time Zone</p>
-                            <p><%= response.timezones %></p>
-                        </div>
-                    </div>
-                    <div class="country-detail-right">
-                        <iframe class="maps" src="<%= response.maps %>"></iframe>
-                    </div>
-                </div>
-            </div>
+            <footer>
+                <p>Code by : 
+                    <a href="https://github.com/mrstraiber" target="_blank">Souliman Terrah</a>
+                </p>
+            </footer>
         </div>
     </main>
 

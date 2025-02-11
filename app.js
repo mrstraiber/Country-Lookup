@@ -15,7 +15,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-    res.render("index.ejs", {response});
+    res.render("index.ejs");
 })
 
 app.post("/search", async (req, res) =>{
@@ -23,7 +23,7 @@ app.post("/search", async (req, res) =>{
 
     if(searchCountry === '')
     {
-        res.render("index.ejs", {response: "Please chose a country from list"});
+        res.render("index.ejs");
     }
     else{
         try {
@@ -60,7 +60,6 @@ app.post("/search", async (req, res) =>{
                 photographerurl: responseImage.photos[0].url,
             };
             res.render("index.ejs", {response: responsedata});
-            console.log(mapsurl);
           } catch (error) {
             console.error(error);
           }

@@ -6,12 +6,17 @@
     box-sizing: border-box;
 }
 
-body{
+html body{
     font-family: "Oxanium", serif;
+    height: 100vh;
+    
 }
 
 .container{
-   padding: 0 20px 0 20px;
+   padding: 0 10px;
+   display: flex;
+   flex-direction: column;
+   flex: 1; /* Takes up all available space */
 }
 
 .page-title{
@@ -21,27 +26,18 @@ body{
 
 .country-image{
     width: 100%;
-    max-height: 600px;
+    max-height: 900px;
     object-fit: cover;
 }
 
-.bg-image{
-    position: relative;
-}
-
 .photograph-credit{
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
-  font-size: 14px;
-  background-color: rgb(219, 196, 196);
-  border-radius: 3px;
-  padding: 5px;
-  color: black;
-  text-decoration: none;
+    margin-top: 6px;
+    font-size: 13px;
+    color: black;
+    text-decoration: none;
 }
 
-.credit-style{
+.photograph-credit a{
     color: black;
     text-decoration: none;
 }
@@ -54,18 +50,21 @@ body{
     color: black;
     background: rgb(255, 250, 235);
     border: 1px solid #e29578;
-    width: 500px;
+    width: 70vw;
+    max-width: 500px;
+    min-width: 200px;
 }
 
 .search-input input{
     height: 40px;
     padding: 6px;
-    width: 70vw;
+    width: 60vw;
     max-width: 600px;
     min-width: 200px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    font-family: "Oxanium", serif;
 }
 
 .search-button{
@@ -73,6 +72,7 @@ body{
     justify-content: center;
     align-items: center;
     padding: 4px;
+    font-family: "Oxanium", serif;
 }
 
 .search-section{
@@ -169,31 +169,19 @@ body{
     align-items: center;
 }
 
-.result-section{
-    margin: 0 auto;
-}
-
 .cards-detail{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background: rgb(255, 250, 235);
     padding: 12px 15px;
-    
 }
 
-.country-detail-left{
+.cards-output{
     border: 1px solid #e29578;
     width: 70vw;
-    max-width: 500px;
-    height: 354px;
-}
-
-.country-detail-right{
-    border: 1px solid #e29578;
-    border-left: none;
-    width: 70vw;
-    max-width: 500px;
+    max-width: 600px;
+    min-width: 200px;
     height: 354px;
 }
 
@@ -208,4 +196,53 @@ body{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+}
+
+footer{
+    text-align: center;
+    padding: 10px;
+}
+
+footer a {
+    color: black;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration : underline;
+}
+
+@media (max-width: 1226px) {
+    .result-section{
+        display: block;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .country-detail-section{
+        padding: 30px 0;
+    }
+    .cards-output{
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 425px) {
+    .country-detail-section{
+        display: block;
+    }
+    .cards-output{
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 425px) {
+    .bg-image-info{
+        width: 90%;
+    }
+    .center-div-country-name{
+        width: 90%;
+    }
 }
