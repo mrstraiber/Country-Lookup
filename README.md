@@ -1,8 +1,8 @@
-#Country Look Up 🌍
+# Country Look Up 🌍
 
 A simple web application where users can search for a country and get various details like capital, population, languages, an image of the country, and a map.
 
-*Features*
+**Features**
 
 - 🔍 Search for any country
 - 🖼️ View an image of the country
@@ -10,7 +10,7 @@ A simple web application where users can search for a country and get various de
 - 🗺️ See the country’s location on a map
 ___
 
-*Tech Stack*
+**Tech Stack**
 This project uses the following technologies:
 
 - Frontend: EJS, CSS, JavaScript
@@ -20,6 +20,6 @@ This project uses the following technologies:
     - 🖼️ Public API for images
 ___
 
-*Link to the project*
+**Link to the project**
 
 https://country-lookup.onrender.com/
