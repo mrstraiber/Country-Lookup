@@ -229,7 +229,7 @@ footer a:hover {
     }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 680px) {
     .country-detail-section{
         display: block;
     }
@@ -238,7 +238,7 @@ footer a:hover {
     }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 680px) {
     .bg-image-info{
         width: 90%;
     }
